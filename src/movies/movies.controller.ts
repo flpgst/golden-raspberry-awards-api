@@ -9,7 +9,8 @@ import {
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
-import { Movie } from './interfaces/movie.interface';
+import { ApiBody } from '@nestjs/swagger';
+import { MovieEntity } from './entities/movie.entity';
 // import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Controller('movies')
@@ -17,12 +18,13 @@ export class MoviesController {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Post()
-  create(@Body() createMovieDto: CreateMovieDto) {
+  @ApiBody({ type: CreateMovieDto })
+  create(@Body() createMovieDto: CreateMovieDto): Promise<MovieEntity> {
     return this.moviesService.create(createMovieDto);
   }
 
   @Get()
-  findAll() {
+  findAll(): Promise<MovieEntity[]> {
     return this.moviesService.findAll();
   }
 
