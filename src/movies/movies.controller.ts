@@ -9,9 +9,9 @@ import {
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { ApiBody } from '@nestjs/swagger';
 import { MovieEntity } from './entities/movie.entity';
-// import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Controller('movies')
 export class MoviesController {
@@ -33,10 +33,10 @@ export class MoviesController {
     return this.moviesService.findOne(+id);
   }
 
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
-  //   return this.moviesService.update(+id, updateMovieDto);
-  // }
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() updateMovieDto: UpdateMovieDto) {
+    return this.moviesService.update(+id, updateMovieDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
