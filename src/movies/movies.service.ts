@@ -38,11 +38,11 @@ export class MoviesService implements OnApplicationBootstrap {
   }
 
   async findOne(id: number): Promise<MovieEntity> {
-    return this.movieRepository.findOne(id);
+    return await this.movieRepository.findOne(id);
   }
 
-  update(id: number, updateMovieDto: UpdateMovieDto) {
-    return this.movieRepository.update(id, updateMovieDto);
+  async update(id: number, updateMovieDto: UpdateMovieDto) {
+    return await this.movieRepository.update(id, updateMovieDto);
   }
 
   async remove(id: number) {
