@@ -42,7 +42,7 @@ export class MoviesService implements OnApplicationBootstrap {
   }
 
   update(id: number, updateMovieDto: UpdateMovieDto) {
-    return `This action updates a #${id} movie`;
+    return this.movieRepository.update(id, updateMovieDto);
   }
 
   async remove(id: number) {
